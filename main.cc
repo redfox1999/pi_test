@@ -1,12 +1,22 @@
+#include <csignal>
 #include <iostream>
 #include <wiringPi.h>
 #include "simplog.h"
+
+bool g_exit = false;
+
+void mysign_handler(int signal) {
+	LOG_INFO("you press ctrl+c to quiting...");
+	g_exit = true;
+}
 
 
 int main(int argc, const char* argv[]) {
 	int major = 0;
 	int minor = 0;
 	int Gpio21 = 0;
+	
+	signal(SIGINT, mysign_handler);
 	
 	LOG_INFO("this is wiringPi GPIO test....");
 	
@@ -21,16 +31,18 @@ int main(int argc, const char* argv[]) {
 	
 	pinMode(Gpio21, OUTPUT);
 	
-	LOG_INFO("write GPIO.21 to HIGH");
+	while (!g_exit) {
+		LOG_INFO("write GPIO.21 to HIGH");
 	
-	digitalWrite(Gpio21, HIGH);
+		digitalWrite(Gpio21, HIGH);
 	
-	delay(5000);
+		delay(1000);
 	
-	LOG_INFO("write GPIO.21 to LOW");
-	digitalWrite(Gpio21, LOW);
+		LOG_INFO("write GPIO.21 to LOW");
+		digitalWrite(Gpio21, LOW);
 	
-	delay(5000);
+		delay(1000);
+	}
 	
 	wiringPiSetup();
 	
