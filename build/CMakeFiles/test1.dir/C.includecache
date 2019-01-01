@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/proj/pi_test/simplog.c
+stdio.h
+-
+time.h
+-
+stdarg.h
+-
+errno.h
+-
+string.h
+-
+unistd.h
+-
+fcntl.h
+-
+stdlib.h
+-
+stdbool.h
+-
+execinfo.h
+-
+stdint.h
+-
+libproc.h
+-
+simplog.h
+/home/pi/proj/pi_test/simplog.h
+
+/home/pi/proj/pi_test/simplog.h
+stdbool.h
+-
+

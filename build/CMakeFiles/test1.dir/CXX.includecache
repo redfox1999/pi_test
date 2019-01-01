@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/proj/pi_test/main.cc
+csignal
+-
+iostream
+-
+wiringPi.h
+-
+simplog.h
+/home/pi/proj/pi_test/simplog.h
+
+/home/pi/proj/pi_test/simplog.h
+stdbool.h
+-
+
