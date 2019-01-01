@@ -6,7 +6,7 @@
 bool g_exit = false;
 
 void mysign_handler(int signal) {
-	LOG_INFO("you press ctrl+c to quiting...");
+	LOG_WARN("you press ctrl+c to quiting...");
 	g_exit = true;
 }
 
