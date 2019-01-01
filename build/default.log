@@ -1,29 +1,112 @@
-[2019-01-01 10:06:16]	INFO  : this is wiringPi GPIO test....
-[2019-01-01 10:06:16]	INFO  : wiringPi Version: 2.46
-[2019-01-01 10:06:16]	INFO  : wiringPiSetupGpio result = 0
-[2019-01-01 10:06:16]	INFO  : write GPIO.21 to HIGH
-[2019-01-01 10:06:17]	INFO  : write GPIO.21 to LOW
-[2019-01-01 10:06:19]	INFO  : write GPIO.21 to HIGH
-[2019-01-01 10:06:20]	INFO  : write GPIO.21 to LOW
-[2019-01-01 10:06:21]	INFO  : write GPIO.21 to HIGH
-[2019-01-01 10:06:22]	INFO  : write GPIO.21 to LOW
-[2019-01-01 10:06:23]	INFO  : write GPIO.21 to HIGH
-[2019-01-01 10:06:24]	INFO  : write GPIO.21 to LOW
-[2019-01-01 10:06:24]	INFO  : you press ctrl+c to quiting...
-[2019-01-01 10:06:24]	INFO  : END!
-[2019-01-01 17:04:34]	INFO  : this is wiringPi GPIO test....
-[2019-01-01 17:04:34]	INFO  : wiringPi Version: 2.46
-[2019-01-01 17:04:34]	INFO  : wiringPiSetupGpio result = 0
-[2019-01-01 17:04:34]	INFO  : write GPIO.21 to HIGH
-[2019-01-01 17:04:35]	INFO  : write GPIO.21 to LOW
-[2019-01-01 17:04:36]	INFO  : write GPIO.21 to HIGH
-[2019-01-01 17:04:37]	INFO  : write GPIO.21 to LOW
-[2019-01-01 17:04:38]	INFO  : you press ctrl+c to quiting...
-[2019-01-01 17:04:38]	INFO  : END!
-[2019-01-01 17:05:11]	INFO  : this is wiringPi GPIO test....
-[2019-01-01 17:05:11]	INFO  : wiringPi Version: 2.46
-[2019-01-01 17:05:11]	INFO  : wiringPiSetupGpio result = 0
-[2019-01-01 17:05:11]	INFO  : write GPIO.21 to HIGH
-[2019-01-01 17:05:12]	INFO  : write GPIO.21 to LOW
-[2019-01-01 17:05:12]	WARN  : you press ctrl+c to quiting...
-[2019-01-01 17:05:12]	INFO  : END!
+[2019-01-01 20:24:52]	INFO [main.cc:40] this is wiringPi GPIO test....
+[2019-01-01 20:24:52]	INFO [main.cc:47] wiringPi Version: 2.46
+[2019-01-01 20:24:52]	INFO [main.cc:50] wiringPiSetupGpio result = 0
+[2019-01-01 20:24:52]	INFO [main.cc:57] write GPIO.21 to HIGH
+[2019-01-01 20:24:53]	INFO [main.cc:63] write GPIO.21 to LOW
+[2019-01-01 20:24:54]	INFO [main.cc:57] write GPIO.21 to HIGH
+[2019-01-01 20:24:55]	INFO [main.cc:63] write GPIO.21 to LOW
+[2019-01-01 20:24:56]	INFO [main.cc:57] write GPIO.21 to HIGH
+[2019-01-01 20:24:57]	INFO [main.cc:63] write GPIO.21 to LOW
+[2019-01-01 20:24:58]	INFO [main.cc:57] write GPIO.21 to HIGH
+[2019-01-01 20:24:59]	INFO [main.cc:63] write GPIO.21 to LOW
+[2019-01-01 20:25:00]	INFO [main.cc:57] write GPIO.21 to HIGH
+[2019-01-01 20:25:00]	WARN [main.cc:11] you press ctrl+c to quiting...
+[2019-01-01 20:25:00]	INFO [main.cc:63] write GPIO.21 to LOW
+[2019-01-01 20:25:01]	INFO [main.cc:71] END!
+[2019-01-01 20:25:26]	INFO [main.cc:40] this is wiringPi GPIO test....
+[2019-01-01 20:25:26]	INFO [main.cc:47] wiringPi Version: 2.46
+[2019-01-01 20:25:26]	INFO [main.cc:50] wiringPiSetupGpio result = 0
+[2019-01-01 20:25:26]	INFO [main.cc:57] write GPIO.21 to HIGH
+[2019-01-01 20:25:27]	INFO [main.cc:63] write GPIO.21 to LOW
+[2019-01-01 20:25:28]	INFO [main.cc:57] write GPIO.21 to HIGH
+[2019-01-01 20:25:28]	WARN [main.cc:11] you press ctrl+c to quiting...
+[2019-01-01 20:25:28]	INFO [main.cc:63] write GPIO.21 to LOW
+[2019-01-01 20:25:29]	INFO [main.cc:71] END!
+[2019-01-01 20:25:49]	INFO [main.cc:40] this is wiringPi GPIO test....
+[2019-01-01 20:25:49]	INFO [main.cc:48] wiringPi Version: 2.46
+[2019-01-01 20:25:49]	INFO [main.cc:51] wiringPiSetupGpio result = 0
+[2019-01-01 20:25:49]	INFO [main.cc:58] write GPIO.21 to HIGH
+[2019-01-01 20:25:50]	INFO [main.cc:64] write GPIO.21 to LOW
+[2019-01-01 20:25:51]	INFO [main.cc:58] write GPIO.21 to HIGH
+[2019-01-01 20:25:52]	INFO [main.cc:64] write GPIO.21 to LOW
+[2019-01-01 20:25:53]	INFO [main.cc:58] write GPIO.21 to HIGH
+[2019-01-01 20:25:54]	INFO [main.cc:64] write GPIO.21 to LOW
+[2019-01-01 20:25:55]	INFO [main.cc:58] write GPIO.21 to HIGH
+[2019-01-01 20:25:55]	WARN [main.cc:11] you press ctrl+c to quiting...
+[2019-01-01 20:25:55]	INFO [main.cc:64] write GPIO.21 to LOW
+[2019-01-01 20:25:56]	INFO [main.cc:72] END!
+[2019-01-01 20:26:47]	INFO [main.cc:40] this is wiringPi GPIO test....
+[2019-01-01 20:26:47]	INFO [main.cc:49] wiringPi Version: 2.46
+[2019-01-01 20:26:47]	INFO [main.cc:52] wiringPiSetupGpio result = 0
+[2019-01-01 20:26:47]	INFO [main.cc:59] write GPIO.21 to HIGH
+[2019-01-01 20:26:48]	INFO [main.cc:65] write GPIO.21 to LOW
+[2019-01-01 20:26:49]	INFO [main.cc:59] write GPIO.21 to HIGH
+[2019-01-01 20:26:50]	INFO [main.cc:65] write GPIO.21 to LOW
+[2019-01-01 20:26:51]	INFO [main.cc:59] write GPIO.21 to HIGH
+[2019-01-01 20:26:52]	INFO [main.cc:65] write GPIO.21 to LOW
+[2019-01-01 20:26:53]	INFO [main.cc:59] write GPIO.21 to HIGH
+[2019-01-01 20:26:54]	INFO [main.cc:65] write GPIO.21 to LOW
+[2019-01-01 20:26:55]	INFO [main.cc:59] write GPIO.21 to HIGH
+[2019-01-01 20:26:56]	INFO [main.cc:65] write GPIO.21 to LOW
+[2019-01-01 20:26:57]	INFO [main.cc:59] write GPIO.21 to HIGH
+[2019-01-01 20:26:58]	INFO [main.cc:65] write GPIO.21 to LOW
+[2019-01-01 20:26:59]	WARN [main.cc:11] you press ctrl+c to quiting...
+[2019-01-01 20:26:59]	INFO [main.cc:73] END!
+[2019-01-01 20:27:19]	INFO [main.cc:40] this is wiringPi GPIO test....
+[2019-01-01 20:27:19]	INFO [main.cc:49] wiringPi Version: 2.46
+[2019-01-01 20:27:19]	INFO [main.cc:52] wiringPiSetupGpio result = 0
+[2019-01-01 20:27:19]	INFO [main.cc:59] write GPIO.21 to HIGH
+[2019-01-01 20:27:20]	INFO [main.cc:65] write GPIO.21 to LOW
+[2019-01-01 20:27:21]	INFO [main.cc:59] write GPIO.21 to HIGH
+[2019-01-01 20:27:22]	WARN [main.cc:11] you press ctrl+c to quiting...
+[2019-01-01 20:27:22]	INFO [main.cc:65] write GPIO.21 to LOW
+[2019-01-01 20:27:23]	INFO [main.cc:73] END!
+[2019-01-01 20:27:44]	INFO [main.cc:22] this is wiringPi GPIO test....
+[2019-01-01 20:27:44]	INFO [main.cc:26] wiringPi Version: 2.46
+[2019-01-01 20:27:44]	INFO [main.cc:29] wiringPiSetupGpio result = 0
+[2019-01-01 20:27:44]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:27:45]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:27:46]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:27:47]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:27:48]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:27:49]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:27:50]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:27:51]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:27:52]	WARN [main.cc:11] you press ctrl+c to quiting...
+[2019-01-01 20:27:52]	INFO [main.cc:50] END!
+[2019-01-01 20:32:10]	INFO [main.cc:22] this is wiringPi GPIO test....
+[2019-01-01 20:32:10]	INFO [main.cc:26] wiringPi Version: 2.46
+[2019-01-01 20:32:10]	INFO [main.cc:29] wiringPiSetupGpio result = 0
+[2019-01-01 20:32:10]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:32:11]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:32:12]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:32:13]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:32:14]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:32:15]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:32:16]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:32:17]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:32:18]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:32:19]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:32:20]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:32:21]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:32:22]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:32:23]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:32:24]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:32:25]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:32:26]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:32:27]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:32:28]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:32:29]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:32:30]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:32:31]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:32:32]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:32:33]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:32:34]	WARN [main.cc:11] you press ctrl+c to quiting...
+[2019-01-01 20:32:34]	INFO [main.cc:50] END!
+[2019-01-01 20:50:41]	INFO [main.cc:22] this is wiringPi GPIO test....
+[2019-01-01 20:50:41]	INFO [main.cc:26] wiringPi Version: 2.46
+[2019-01-01 20:50:41]	INFO [main.cc:29] wiringPiSetupGpio result = 0
+[2019-01-01 20:50:41]	INFO [main.cc:36] write GPIO.21 to HIGH
+[2019-01-01 20:50:42]	INFO [main.cc:42] write GPIO.21 to LOW
+[2019-01-01 20:50:43]	WARN [main.cc:11] you press ctrl+c to quiting...
+[2019-01-01 20:50:43]	INFO [main.cc:50] END!

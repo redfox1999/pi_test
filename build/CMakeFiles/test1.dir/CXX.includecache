@@ -13,6 +13,8 @@ iostream
 -
 wiringPi.h
 -
+cstring
+-
 simplog.h
 /home/pi/proj/pi_test/simplog.h
 
