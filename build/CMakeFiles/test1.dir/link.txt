@@ -1,1 +1,0 @@
-/usr/bin/c++   -O0 -Wall -g -std=c++11 -ggdb   CMakeFiles/test1.dir/main.cc.o CMakeFiles/test1.dir/simplog.c.o  -o test1 -rdynamic -lpthread -lwiringPi 
