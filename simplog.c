@@ -45,12 +45,31 @@ static char* COL_TRACE   = "\x1B[95m";  // Light Magenta
 static int  dbgLevel        = SIMPLOG_DEBUG;    // Default Logging level
 static char logFile[255]    = "default.log";    // Default log file name
 static bool silentMode      = false;            // Default silent mode setting
-static bool lineWrap        = true;             // Default setting for line wrapping
+static bool lineWrap        = false;             // Default setting for line wrapping
 
 // Private function prototypes
 static char* getDateString();
 static char** getPrettyBacktrace( void* addresses[], int array_size );
 static void wrapLines( char* msg, int msgSize );
+
+
+static char* pureFileName(const char* filename) {
+	char* pfile = (char*) filename;
+	if (pfile != NULL) {
+		int len = strlen(pfile);
+		pfile += (len - 1);
+		len--;
+		while (len > 0) {
+			if (*pfile == '/' || *pfile == '\\') {
+				pfile++;
+				return pfile;
+			}
+			pfile--;
+			len--;
+		}
+	}
+	return pfile;
+}
 
 /*
     Writes output to defined logfile and standard out/err with
@@ -76,10 +95,12 @@ static void wrapLines( char* msg, int msgSize );
     const char* str - The message to be output. This is a format string.
     ...             - Variable length list of arguments to be used with the format string (optional).
 */
-void writeLog( int loglvl, const char* str, ... ) {
+void writeLog( int loglvl, const char* filename, int line, const char* str, ... ) {
     // Prepare variable length args list
     va_list args;
     va_start( args, str );
+    
+    char* purefile = pureFileName(filename);
 
     // No way to determine size of list
     // This will hold a stacktrace of 15 lines plus a message
@@ -120,10 +141,10 @@ void writeLog( int loglvl, const char* str, ... ) {
     if( loglvl < SIMPLOG_INFO ){
         if( loglvl == SIMPLOG_FATAL ) {
             outColor = COL_FATAL;
-            sprintf( msg, "%s\tFATAL : ", date );   // -2: Fatal
+            sprintf( msg, "%s\tFATAL [%s:%d] ", date, purefile, line );   // -2: Fatal
         } else if( loglvl == SIMPLOG_ERROR ) {
             outColor = COL_ERROR;
-            sprintf( msg, "%s\tERROR : ", date );   // -1: Error
+            sprintf( msg, "%s\tERROR [%s:%d] ", date, purefile, line );   // -1: Error
         }
 
         // Append args string to output message
@@ -157,24 +178,24 @@ void writeLog( int loglvl, const char* str, ... ) {
         // Check loglvl/dbgLevel and add appropriate name to message
         if( loglvl == SIMPLOG_INFO ) {
             outColor = COL_INFO;
-            sprintf( msg, "%s\tINFO  : ", date );      // 0: Info
+            sprintf( msg, "%s\tINFO [%s:%d] ", date, purefile, line );      // 0: Info
         } else if( loglvl == SIMPLOG_WARN && dbgLevel >= SIMPLOG_WARN ) {
             outColor = COL_WARN;
-            sprintf( msg, "%s\tWARN  : ", date );      // 1: Warning
+            sprintf( msg, "%s\tWARN [%s:%d] ", date, purefile, line );      // 1: Warning
         } else if( loglvl == SIMPLOG_DEBUG && dbgLevel >= SIMPLOG_DEBUG ) {
             outColor = COL_DEBUG;
-            sprintf( msg, "%s\tDEBUG : ", date );      // 2: Debug
+            sprintf( msg, "%s\tDEBUG [%s:%d] ", date, purefile, line );      // 2: Debug
         } else if( loglvl == SIMPLOG_VERBOSE && dbgLevel >= SIMPLOG_VERBOSE ) {
             outColor = COL_VERBOSE;
-            sprintf( msg, "%s\tDEBUG : ", date );      // 3: Verbose
+            sprintf( msg, "%s\tDEBUG [%s:%d] ", date, purefile, line );      // 3: Verbose
         } else if( loglvl == SIMPLOG_LOGGER && dbgLevel >= SIMPLOG_DEBUG ) {
             outColor = COL_LOGGER;
-            sprintf( msg, "%s\tLOG   : ", date );
+            sprintf( msg, "%s\tLOG  [%s:%d] ", date, purefile, line );
             // Internal logger messages should appear as they are. Don't wrap
             wrap = false;
         } else if( loglvl == SIMPLOG_TRACE && dbgLevel >= SIMPLOG_DEBUG ) {
             outColor = COL_TRACE;
-            sprintf( msg, "%s\tTRACE : ", date );
+            sprintf( msg, "%s\tTRACE [%s:%d] ", date, purefile, line );
             // Traces are pre-formatted.  Don't attempt to wrap the lines
             wrap = false;
         } else {
@@ -222,7 +243,7 @@ void writeLog( int loglvl, const char* str, ... ) {
         // get how many bytes the output was truncated by
         int truncated_size = va_string_size - ( strlen( str ) + max_va_list_size );
         // output message notifying the user of truncation and amount
-        writeLog( SIMPLOG_LOGGER, "Previous message truncated by %d bytes to fit into buffer", truncated_size );
+        writeLog( SIMPLOG_LOGGER,  __FILE__, __LINE__, "Previous message truncated by %d bytes to fit into buffer", truncated_size );
     }
 }
 
@@ -311,7 +332,7 @@ void writeStackTrace() {
     }
 
     // write the final message to the logs
-    writeLog( SIMPLOG_TRACE, "%s", message );
+    writeLog( SIMPLOG_TRACE,  __FILE__, __LINE__, "%s", message );
 
     // free message and backtrace variables
     free( message );
@@ -342,7 +363,7 @@ void setLogDebugLevel( int level ) {
     // Check if the provided debug level is valid, else print error message
     if( level >= SIMPLOG_INFO && level <= SIMPLOG_VERBOSE ) {
          dbgLevel = level;
-         writeLog( SIMPLOG_LOGGER, "Debug level set to %d", level );
+         writeLog( SIMPLOG_LOGGER,  __FILE__, __LINE__, "Debug level set to %d", level );
     } else {
         // set to default debug level
         dbgLevel = SIMPLOG_DEBUG;
@@ -362,7 +383,7 @@ void setLogDebugLevel( int level ) {
         sprintf( error + strlen( error ), "%s2  : Debug\n", indentedLineSpacing );
         sprintf( error + strlen( error ), "%s3  : Debug-Verbose", indentedLineSpacing );
 
-        writeLog( SIMPLOG_LOGGER, error );
+        writeLog( SIMPLOG_LOGGER,  __FILE__, __LINE__, error );
         free( error );
         free( indentedLineSpacing );
     }
@@ -377,7 +398,7 @@ void setLogDebugLevel( int level ) {
 void setLogFile( const char* file ) {
     memset( logFile, 0, 255 );
     strcpy( logFile, file );
-    writeLog( SIMPLOG_LOGGER, "Log file set to '%s'", logFile );
+    writeLog( SIMPLOG_LOGGER,  __FILE__, __LINE__, "Log file set to '%s'", logFile );
 }
 
 /*
@@ -390,7 +411,7 @@ void setLogFile( const char* file ) {
 */
 void setLogSilentMode( bool silent ) {
     silentMode = silent;
-    writeLog( SIMPLOG_LOGGER, "Silent mode %s", silent ? "enabled" : "disabled" );
+    writeLog( SIMPLOG_LOGGER, __FILE__, __LINE__, "Silent mode %s", silent ? "enabled" : "disabled" );
 }
 
 /*
@@ -403,7 +424,7 @@ void setLogSilentMode( bool silent ) {
 */
 void setLineWrap( bool wrap ) {
     lineWrap = wrap;
-    writeLog( SIMPLOG_LOGGER, "Line wrapping %s", wrap ? "enabled" : "disabled" );
+    writeLog( SIMPLOG_LOGGER,  __FILE__, __LINE__,"Line wrapping %s", wrap ? "enabled" : "disabled" );
 }
 
 /*
@@ -433,7 +454,7 @@ void flushLog() {
     int log = open( logFile, O_CREAT | O_RDWR, 0664 );
     close( log );
 
-    writeLog( SIMPLOG_LOGGER, "Log file '%s' cleared", logFile );
+    writeLog( SIMPLOG_LOGGER,  __FILE__, __LINE__, "Log file '%s' cleared", logFile );
 }
 
 /*
@@ -463,7 +484,7 @@ void loadConfig( const char* config ) {
     int fd = open( config, O_RDONLY );
     if( fd == -1 ) {
         // Write error message
-        writeLog( SIMPLOG_LOGGER, "Unable to open config file: '%s'", config );
+        writeLog( SIMPLOG_LOGGER, __FILE__, __LINE__, "Unable to open config file: '%s'", config );
 
         // Clean errno so it's not mistakenly printed for other messages
         errno = 0;
@@ -614,12 +635,12 @@ static char** getPrettyBacktrace( void* addresses[], int array_size ) {
             pid_t pid = getpid();
             int path_length = proc_pidpath( pid, exe_path, sizeof( exe_path ) );
             if( path_length <= 0 ) {
-                writeLog( SIMPLOG_LOGGER, "Unable to get execution path. Defaulting to standard backtrace." );
+                writeLog( SIMPLOG_LOGGER,  __FILE__, __LINE__, "Unable to get execution path. Defaulting to standard backtrace." );
                 error = true;
             }
             exe_path[path_length] = 0;
         } else {
-            writeLog( SIMPLOG_LOGGER, "Function 'gaddr2line' unavailable. Defaulting to standard backtrace. Please install package 'binutils' for better stacktrace output." );
+            writeLog( SIMPLOG_LOGGER, __FILE__, __LINE__, "Function 'gaddr2line' unavailable. Defaulting to standard backtrace. Please install package 'binutils' for better stacktrace output." );
             error = true;
         }
     #else
@@ -628,12 +649,12 @@ static char** getPrettyBacktrace( void* addresses[], int array_size ) {
             command = "addr2line -Cfispe";
             int path_length = readlink( "/proc/self/exe", exe_path, sizeof( exe_path ) );
             if(  path_length <= 0 ) {
-                writeLog( SIMPLOG_LOGGER, "Unable to get execution path. Defaulting to standard backtrace." );
+                writeLog( SIMPLOG_LOGGER, __FILE__, __LINE__, "Unable to get execution path. Defaulting to standard backtrace." );
                 error = true;
             }
             exe_path[path_length] = 0;
         } else {
-            writeLog( SIMPLOG_LOGGER, "Function 'addr2line' unavailable. Defaulting to standard backtrace. Please install package 'binutils' for better stacktrace output." );
+            writeLog( SIMPLOG_LOGGER, __FILE__, __LINE__, "Function 'addr2line' unavailable. Defaulting to standard backtrace. Please install package 'binutils' for better stacktrace output." );
             error = true;
         }
     #endif
@@ -660,7 +681,7 @@ static char** getPrettyBacktrace( void* addresses[], int array_size ) {
 
         // Error checking for command
         if( line == NULL ) {
-            writeLog( SIMPLOG_LOGGER, "Failed to execute command: '%s'. Defaulting to standard backtrace.", command );
+            writeLog( SIMPLOG_LOGGER,  __FILE__, __LINE__, "Failed to execute command: '%s'. Defaulting to standard backtrace.", command );
             for( int i = 0; i < array_size; i ++ ) {
                 free( backtrace_strings[i] );
             }
@@ -670,7 +691,7 @@ static char** getPrettyBacktrace( void* addresses[], int array_size ) {
 
         // Read the output into the return string
         if( fgets( backtrace_strings[i] , 255, line ) == NULL ) {
-            writeLog( SIMPLOG_LOGGER, "Failed to get pretty backtrace strings. Defaulting to standard backtrace." );
+            writeLog( SIMPLOG_LOGGER, __FILE__, __LINE__, "Failed to get pretty backtrace strings. Defaulting to standard backtrace." );
             for( int i = 0; i < array_size; i ++ ) {
                 free( backtrace_strings[i] );
             }
@@ -692,7 +713,7 @@ static char** getPrettyBacktrace( void* addresses[], int array_size ) {
 
     // If no addresses were evaluated successfully, we fall back on the standard backtrace
     if( !address_evaluation_successful ) {
-        writeLog( SIMPLOG_LOGGER, "Command '%s' failed to evaluate addresses. Defaulting to standard backtrace.", command );
+        writeLog( SIMPLOG_LOGGER,  __FILE__, __LINE__,"Command '%s' failed to evaluate addresses. Defaulting to standard backtrace.", command );
         for( int i = 0; i < array_size; i ++ ) {
             free( backtrace_strings[i] );
         }

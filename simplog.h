@@ -26,7 +26,7 @@ extern "C" {
 
 // Public functions
 typedef struct {
-    void ( *const writeLog )( int loglvl, const char* str, ... );
+    void ( *const writeLog )( int loglvl, const char* filename, int line, const char* str, ... );
     void ( *const writeStackTrace )( void );
     void ( *const setLogDebugLevel )( int level );
     void ( *const setLogFile )( const char* file );
@@ -37,12 +37,12 @@ typedef struct {
 } simplog_namespace;
 extern simplog_namespace const simplog;
 
-#define LOG_VERBOSE(format, args...) simplog.writeLog(SIMPLOG_VERBOSE, format, ##args)
-#define LOG_DEBUG(format, args...) simplog.writeLog(SIMPLOG_DEBUG, format, ##args)
-#define LOG_INFO(format, args...) simplog.writeLog(SIMPLOG_INFO, format, ##args)
-#define LOG_WARN(format, args...) simplog.writeLog(SIMPLOG_WARN, format, ##args)
-#define LOG_ERROR(format, args...) simplog.writeLog(SIMPLOG_ERROR, format, ##args)
-#define LOG_FATAL(format, args...) simplog.writeLog(SIMPLOG_FATAL, format, ##args)
+#define LOG_VERBOSE(format, args...) simplog.writeLog(SIMPLOG_VERBOSE, __FILE__, __LINE__, format, ##args)
+#define LOG_DEBUG(format, args...) simplog.writeLog(SIMPLOG_DEBUG, __FILE__, __LINE__, format, ##args)
+#define LOG_INFO(format, args...) simplog.writeLog(SIMPLOG_INFO, __FILE__, __LINE__, format, ##args)
+#define LOG_WARN(format, args...) simplog.writeLog(SIMPLOG_WARN, __FILE__, __LINE__, format, ##args)
+#define LOG_ERROR(format, args...) simplog.writeLog(SIMPLOG_ERROR, __FILE__, __LINE__, format, ##args)
+#define LOG_FATAL(format, args...) simplog.writeLog(SIMPLOG_FATAL, __FILE__, __LINE__, format, ##args)
 
 #ifdef __cplusplus
 }

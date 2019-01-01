@@ -1,6 +1,8 @@
 #include <csignal>
 #include <iostream>
 #include <wiringPi.h>
+#include <cstring>
+
 #include "simplog.h"
 
 bool g_exit = false;
@@ -15,7 +17,6 @@ int main(int argc, const char* argv[]) {
 	int major = 0;
 	int minor = 0;
 	int Gpio21 = 0;
-	
 	signal(SIGINT, mysign_handler);
 	
 	LOG_INFO("this is wiringPi GPIO test....");
