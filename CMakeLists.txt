@@ -8,3 +8,8 @@ add_executable(test1 main.cc simplog.h simplog.c)
 SET(LIBS pthread wiringPi)
 
 target_link_libraries(test1 ${LIBS} )
+
+add_executable(test2 test2.cc simplog.h simplog.c)
+
+target_link_libraries(test2 ${LIBS} )
+
